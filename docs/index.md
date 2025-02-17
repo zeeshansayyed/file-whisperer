@@ -5,4 +5,4 @@
 [![Commit activity](https://img.shields.io/github/commit-activity/m/zeeshansayyed/file-whisperer)](https://img.shields.io/github/commit-activity/m/zeeshansayyed/file-whisperer)
 [![License](https://img.shields.io/github/license/zeeshansayyed/file-whisperer)](https://img.shields.io/github/license/zeeshansayyed/file-whisperer)
 
-This application will help you organize  and your local computer.
+This application will help you organize and your local computer.
