@@ -1,16 +1,9 @@
-# file-whisperer
-
-This application will help you organize and your local computer.
-
-<summary>Badges</summary>
-
 [![Release](https://img.shields.io/github/v/release/zeeshansayyed/file-whisperer)](https://img.shields.io/github/v/release/zeeshansayyed/file-whisperer)
 [![Build status](https://img.shields.io/github/actions/workflow/status/zeeshansayyed/file-whisperer/main.yml?branch=main)](https://github.com/zeeshansayyed/file-whisperer/actions/workflows/main.yml?query=branch%3Amain)
 [![codecov](https://codecov.io/gh/zeeshansayyed/file-whisperer/branch/main/graph/badge.svg)](https://codecov.io/gh/zeeshansayyed/file-whisperer)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/zeeshansayyed/file-whisperer)](https://img.shields.io/github/commit-activity/m/zeeshansayyed/file-whisperer)
 [![License](https://img.shields.io/github/license/zeeshansayyed/file-whisperer)](https://img.shields.io/github/license/zeeshansayyed/file-whisperer)
 
-- **Github repository**: <https://github.com/zeeshansayyed/file-whisperer/>
 - **Documentation** <https://zeeshansayyed.github.io/file-whisperer/>
 
 # 🤫 File-Whisperer: Command Your Clouds from the Terminal
@@ -33,14 +26,13 @@ We're crafting a Python-based terminal application that gives you a unified comm
 
 **✨ Key Features (in progress, but aiming for awesome!):**
 
-- **Drive Mounting (Local & Remote):** Effortlessly "mount" local directories and connect to your online drives (starting with Google Drive and OneDrive, with more to come!). We're talking drive letters like `L1:`, `G1:` to switch drives as easily as navigating your local system.
-- **Familiar Terminal Commands:** Use commands you already know and love: `ls`, `cd`, `cp`, `mv`, `mkdir`, `rmdir`. We're making cloud file management feel like home.
-- **Intelligent Pathing:** Navigate seamlessly between local and remote drives with intuitive pathing. Think `G1:~/Documents` to jump to your Google Drive documents, or `cp L1:/MyLocalFile G2:~/CloudBackup`. We're making "global" file operations a breeze.
+- **Drive Mounting (Local & Remote):** Think of it like mounting a USB drive, but for your clouds! Effortlessly connect local directories and your online drives (starting with Google Drive and OneDrive, with more to come!). Use drive letters like `L1:`, `G1:` to switch drives as easily as navigating your local system. It's like giving your cloud drives a VIP pass to your terminal.
+- **Familiar Terminal Commands:** Use commands you already know and love: `ls`, `cd`, `cp`, `mv`, `mkdir`, `rmdir`. We're making cloud file management feel like home. No need to learn a new language – your existing terminal skills are your superpower!
+- **Intelligent Pathing:** Navigate seamlessly between local and remote drives with intuitive pathing. Think `G1:~/Documents` to jump to your Google Drive documents, or `cp L1:/MyLocalFile G2:~/CloudBackup`. We're making "global" file operations a breeze. It's like having a GPS for your files, no matter where they live.
 - **Speedy Shortcuts:**
-  - **Numbered Aliases in `ls`:** `ls` output gets a smart makeover! Directories and files get numbered, so you can `cd 1` instead of typing out long names. Boom! Efficiency.
-  - **Implicit `cd`:** Just type a path (local or cloud), hit Enter, and BAM! You're there. No need to type `cd` every time.
-  - **File Opening:** Type the name (or number alias) of a file and press Enter - we'll try to open it for you! (Maybe even download and open remote files locally).
-- **Tab Completion on Steroids:** Smart tab completion that understands local paths, drive-level paths, and even global paths spanning different drives. We're minimizing typing and maximizing speed.
+  - **Numbered Aliases in `ls`:** `ls` output gets a smart makeover! Directories and files get numbered, so you can `cd 1` instead of typing out long names. Boom! Efficiency. It's like speed dial for your file system.
+  - **Implicit `cd`:** Just type a path (local or cloud), hit Enter, and BAM! You're there. No need to type `cd` every time. It's like teleportation for your terminal.
+  - **File Opening:** Type the name (or number alias) of a file and press Enter - we'll try to open it for you! (Maybe even download and open remote files locally). It's like having a personal butler who anticipates your every file-opening need.
 
 **🏗️ Under the Hood (A Peek at the Design):**
 
@@ -71,73 +63,30 @@ We're building File-Whisperer with a modular design in Python, making it robust 
 
 **🌱 Contributing (Future is Bright!)**
 
-(We'll flesh this out as the project matures) - But ideas, feedback, and contributions will be very welcome as we move forward!
+We use [uv](https://docs.astral.sh/uv/) for managing Python environments. You have two main options for setting up your development environment: using Docker or installing uv directly.
 
----
+**Option 1: Docker (Recommended for Isolation)**
 
-<details>
-<summary>Setup Instructions from CC</summary>
+1.  **Build the Docker container:**
+    ```bash
+    make docker
+    ```
+2.  **Open an interactive terminal inside the container:**
+    ```bash
+    make docker-shell
+    ```
+    This gives you a consistent and isolated environment with all dependencies pre-installed.
 
-## Getting started with your project
+**Option 2: Local uv Installation (If You Prefer Native Setup)**
 
-### 1. Create a New Repository
-
-First, create a repository on GitHub with the same name as this project, and then run the following commands:
-
-```bash
-git init -b main
-git add .
-git commit -m "init commit"
-git remote add origin git@github.com:zeeshansayyed/file-whisperer.git
-git push -u origin main
-```
-
-### 2. Set Up Your Development Environment
-
-Then, install the environment and the pre-commit hooks with
-
-```bash
-make install
-```
-
-This will also generate your `uv.lock` file
-
-### 3. Run the pre-commit hooks
-
-Initially, the CI/CD pipeline might be failing due to formatting issues. To resolve those run:
-
-```bash
-uv run pre-commit run -a
-```
-
-### 4. Commit the changes
-
-Lastly, commit the changes made by the two steps above to your repository.
-
-```bash
-git add .
-git commit -m 'Fix formatting issues'
-git push origin main
-```
-
-You are now ready to start development on your project!
-The CI/CD pipeline will be triggered when you open a pull request, merge to main, or when you create a new release.
-
-To finalize the set-up for publishing to PyPI, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/publishing/#set-up-for-pypi).
-For activating the automatic documentation with MkDocs, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/mkdocs/#enabling-the-documentation-on-github).
-To enable the code coverage reports, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/codecov/).
-
-## Releasing a new version
-
-- Create an API Token on [PyPI](https://pypi.org/).
-- Add the API Token to your projects secrets with the name `PYPI_TOKEN` by visiting [this page](https://github.com/zeeshansayyed/file-whisperer/settings/secrets/actions/new).
-- Create a [new release](https://github.com/zeeshansayyed/file-whisperer/releases/new) on Github.
-- Create a new tag in the form `*.*.*`.
-
-For more details, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/cicd/#how-to-trigger-a-release).
+1.  **Install uv:**
+    For MacOS or Linux, you can install uv as follows:
+    ```bash
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    ```
+2.  **Use Make commands:**
+    After installing uv, you can use the `make` commands such as `make install`, `make test`, `make build`, etc., to manage your environment.
 
 ---
 
 Repository initiated with [fpgmaas/cookiecutter-uv](https://github.com/fpgmaas/cookiecutter-uv).
-
-</details>
