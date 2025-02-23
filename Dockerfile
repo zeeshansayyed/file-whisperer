@@ -18,4 +18,8 @@ ADD . /app
 # Sync the project
 RUN uv sync --frozen
 
+# Install system packages
+RUN apt-get update && apt-get install -y \
+    make \
+    git
 CMD [ "python", "file_whisperer/foo.py"]

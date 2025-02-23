@@ -46,6 +46,16 @@ docs-test: ## Test if documentation can be built without warnings or errors
 docs: ## Build and serve the documentation
 	@uv run mkdocs serve
 
+.PHONY: docker
+docker: ## Build Docker container
+	@echo "🚀 Building Docker container"
+	@docker build . -t file-whisperer:latest
+
+.PHONY: docker-shell
+docker-shell: docker ## Open an interactive shell in the Docker container
+	@echo "🚀 Opening shell in Docker container"
+	@docker run --rm -it --entrypoint bash file-whisperer:latest
+
 .PHONY: help
 help:
 	@uv run python -c "import re; \
