@@ -6,62 +6,183 @@
 
 - **Documentation** <https://zeeshansayyed.github.io/file-whisperer/>
 
-# 🤫 File-Whisperer: Command Your Clouds from the Terminal
+# 🤫 File-Whisperer: AI-Powered File Organization
 
-**(Because navigating online drives shouldn't feel like shouting into the void)**
+**(Because your file manager shouldn't look like a digital tornado hit it)**
 
 ---
 
-👋 Hey there! Ever felt like wrangling files across different online drives (Google Drive, OneDrive, you name it) and your local computer is a bit... clunky? Like trying to herd digital cats? We're building **File-Whisperer** to change that!
+👋 **Tired of digital chaos?** Got thousands of files scattered across your computer with names like `IMG_20240315_143022.jpg`, `document (1).pdf`, and `Untitled-final-FINAL-v2.docx`? We feel your pain! **File-Whisperer** is here to bring AI-powered sanity to your file organization.
 
 **The Problem:**
 
-Let's face it: web interfaces for cloud drives are great for a quick peek, but when you're doing serious file management – moving mountains of data, organizing folders like a digital Marie Kondo, or just wanting the pure, unadulterated power of command-line efficiency – they fall short. And switching between drives in different browser tabs? _Ugh._ It's time to bring the terminal to the cloud!
+Let's be honest: we're all guilty of it. Downloads folders that look like digital graveyards, desktop screenshots everywhere, and documents with names that made sense at 2 AM but are complete mysteries now. Manual file organization is tedious, time-consuming, and let's face it – we never get around to it.
 
-**Our Solution: File-Whisperer to the Rescue!**
+## **Our Solution: AI That Actually Gets Your Files**
 
-Imagine a world where you can command your online drives (and your local files too!) with the familiar power of your terminal. Think `ls`, `cd`, `cp`, `mv`, `mkdir`, `rmdir` – all working seamlessly across your Google Drive, OneDrive, and your local file system. That's **File-Whisperer**!
+**File-Whisperer** is a command-line tool that uses Large Language Models (LLMs) to intelligently organize your local files. It doesn't just move files randomly – it **understands context**, **respects your privacy**, and **learns your preferences** over time.
 
-We're crafting a Python-based terminal application that gives you a unified command interface to manage files, no matter where they live. Think of it as your personal "command center" for all your digital belongings. No more clicking through endless folders in web browsers!
+Think of it as having a super-smart digital assistant who actually understands what `Screenshot 2024-07-04 at 10.20.15 AM.png` should be called and where it belongs.
 
-**✨ Key Features (in progress, but aiming for awesome!):**
+## **✨ How It Works**
 
-- **Drive Mounting (Local & Remote):** Think of it like mounting a USB drive, but for your clouds! Effortlessly connect local directories and your online drives (starting with Google Drive and OneDrive, with more to come!). Use drive letters like `L1:`, `G1:` to switch drives as easily as navigating your local system. It's like giving your cloud drives a VIP pass to your terminal.
-- **Familiar Terminal Commands:** Use commands you already know and love: `ls`, `cd`, `cp`, `mv`, `mkdir`, `rmdir`. We're making cloud file management feel like home. No need to learn a new language – your existing terminal skills are your superpower!
-- **Intelligent Pathing:** Navigate seamlessly between local and remote drives with intuitive pathing. Think `G1:~/Documents` to jump to your Google Drive documents, or `cp L1:/MyLocalFile G2:~/CloudBackup`. We're making "global" file operations a breeze. It's like having a GPS for your files, no matter where they live.
-- **Speedy Shortcuts:**
-  - **Numbered Aliases in `ls`:** `ls` output gets a smart makeover! Directories and files get numbered, so you can `cd 1` instead of typing out long names. Boom! Efficiency. It's like speed dial for your file system.
-  - **Implicit `cd`:** Just type a path (local or cloud), hit Enter, and BAM! You're there. No need to type `cd` every time. It's like teleportation for your terminal.
-  - **File Opening:** Type the name (or number alias) of a file and press Enter - we'll try to open it for you! (Maybe even download and open remote files locally). It's like having a personal butler who anticipates your every file-opening need.
+File-Whisperer follows a simple, transparent workflow that keeps you in control:
 
-**🏗️ Under the Hood (A Peek at the Design):**
+```bash
+file-whisperer scan /path/to/messy/folder     # Analyze your files
+file-whisperer organize                       # Get AI recommendations
+file-whisperer review                         # Approve/reject suggestions
+file-whisperer apply                          # Execute approved changes
+```
 
-We're building File-Whisperer with a modular design in Python, making it robust and extensible:
+### **🧠 Smart AI Decision Making**
 
-- **`drives` Module:** This is the engine room! It handles the nitty-gritty of interacting with different types of drives (local, Google Drive, OneDrive, etc.). It uses an abstract `Drive` class with concrete implementations for `LocalDrive` and `RemoteDrive`, giving us a unified interface.
-- **`commands` Module:** The command center! It parses user commands (like `ls`, `cd`) and orchestrates actions by talking to the `DriveManager`. It also handles cool shortcuts like aliases.
-- **`ui` Module:** The face of File-Whisperer! Built with `prompt_toolkit`, it provides a slick, interactive terminal interface with tab completion, smart prompts, and potentially even some snazzy styling.
-- **`config` Module:** The memory bank! Manages configuration settings, like remembering added drives and user preferences (if we get fancy!).
-- **`auth` Module:** The gatekeeper! Handles authentication with remote drive services (OAuth and API key magic will live here).
+For each file, our AI can:
 
-**(See the `docs/uml_diagram.png` – _coming soon!_ - for a UML class diagram visual if you're into blueprints)**
+1. **📋 Direct Recommendation**: "This looks like a bank statement from March 2024 → `Documents/Finance/2024/Bank_Statement_March_2024.pdf`"
 
-**🛠️ Tech Stack:**
+2. **🔍 Content Analysis Request**: "I need to read the file contents to properly categorize this document. May I?"
 
-- **Python:** Because it's awesome for scripting, has great libraries, and we love it!
-- **`prompt_toolkit`:** For building a beautiful and powerful command-line interface.
+3. **❓ Smart Questioning**: For sensitive files or unclear cases, it asks targeted questions:
+   - "What type of document is this?"
+   - "What project or category does this relate to?"
+   - "When was this created or relevant?"
 
-**🗺️ Future Roadmap (Just the Beginning!):**
+## **🚀 Key Features**
 
-- **More Cloud Services:** Expand to support other cloud providers.
-- **File Opening Functionality:** Make "open" command truly open files (download and open locally or stream).
-- **More Commands:** `rm`, `du`, `tree`, search, maybe even file editing...? Sky's the limit!
-- **Configuration Persistence:** Save added drives and settings across sessions.
-- **Robust Error Handling and User Feedback:** Make it user-friendly and error-proof.
-- **And ofcourse, a sprinkle of AI**: Think automatic renaming of files, tagging, filing, etc based on the files content.
-- **...and your amazing ideas!**
+### **Privacy-First Approach**
+
+- **You control content access**: AI only reads files with your explicit permission
+- **Sensitive file detection**: Automatically flags files with keywords like "passport", "visa", "tax"
+- **Local processing**: Your files never leave your machine unnecessarily
+
+### **Smart Memory System**
+
+- **File fingerprinting**: Remembers every file it's organized using content hashes
+- **Duplicate detection**: "Hey, I've seen this file before!"
+- **Zero redundant work**: Never processes the same file twice
+
+### **Learning & Adaptation**
+
+- **Interaction logging**: Tracks what you approve/reject to learn your preferences
+- **Evolving intelligence**: Periodically updates its understanding based on your patterns
+- **Personalized suggestions**: Gets better at predicting your organization style over time
+
+### **Human-in-the-Loop Design**
+
+- **Review before action**: Nothing happens without your approval
+- **Transparent reasoning**: See why the AI made each suggestion
+- **Granular control**: Approve/reject individual recommendations
+
+## **📋 Commands**
+
+| Command    | Description                                          |
+| ---------- | ---------------------------------------------------- |
+| `scan`     | Analyze files and collect metadata                   |
+| `organize` | Generate AI-powered organization recommendations     |
+| `review`   | Interactive approval process for suggestions         |
+| `apply`    | Execute approved file moves and renames              |
+| `learn`    | Update AI understanding based on interaction history |
+| `config`   | Manage settings and preferences                      |
+
+## **🛠️ Installation**
+
+```bash
+# Install from PyPI (coming soon!)
+pip install file-whisperer
+
+# Or install from source
+git clone https://github.com/zeeshansayyed/file-whisperer.git
+cd file-whisperer
+uv sync
+```
+
+## **🚀 Quick Start**
+
+```bash
+# Point File-Whisperer at your messy folder
+file-whisperer scan ~/Downloads
+
+# Get AI recommendations
+file-whisperer organize
+
+# Review and approve suggestions
+file-whisperer review
+
+# Apply approved changes
+file-whisperer apply
+```
+
+## **🏗️ Architecture**
+
+File-Whisperer is built with a clean, modular architecture:
+
+- **`scanner`**: File discovery and metadata extraction
+- **`organizer`**: LLM integration and recommendation generation
+- **`reviewer`**: Interactive approval interface
+- **`executor`**: Safe file operations with rollback capability
+- **`memory`**: File indexing and interaction logging
+- **`config`**: Settings and preference management
+
+## **🛠️ Tech Stack**
+
+- **Python 3.9+**: Modern Python with type hints
+- **LLM Integration**: OpenAI GPT, Anthropic Claude, or local models
+- **CLI Framework**: Rich terminal interface with progress bars
+- **File Operations**: Safe, atomic file moves with backup
+- **Storage**: SQLite for file indexing and interaction history
+
+## **🗺️ Roadmap**
+
+### **v1.0 - Core Intelligence**
+
+- 🚧 Basic file scanning and metadata extraction
+- 🚧 LLM-powered organization recommendations
+- 🚧 Interactive review process
+- 🚧 Safe file operations with rollback
+
+### **v1.1 - Enhanced Learning**
+
+- 🔄 Advanced preference learning
+- 🔄 Custom organization templates
+- 🔄 Batch processing for similar files
+
+### **v2.0 - Cloud Integration**
+
+- 🔮 Direct cloud drive organization
+- 🔮 Cross-platform file sync
+- 🔮 Team/shared organization patterns
+
+## **🌱 Contributing**
+
+We use [uv](https://docs.astral.sh/uv/) for dependency management:
+
+```bash
+# Clone and setup
+git clone https://github.com/zeeshansayyed/file-whisperer.git
+cd file-whisperer
+uv sync
+
+# Run tests
+uv run pytest
+
+# Format code
+uv run ruff format
+
+# Type checking
+uv run mypy .
+```
+
+## **📄 License**
+
+MIT License - see [LICENSE](LICENSE) for details.
+
+---
 
 **🌱 Contributing (Future is Bright!)**
+
+<details>
+    <summary>**Ready to whisper your files into perfect organization?** 🗂️✨</summary>
 
 We use [uv](https://docs.astral.sh/uv/) for managing Python environments. You have two main options for setting up your development environment: using Docker or installing uv directly.
 
@@ -87,6 +208,6 @@ We use [uv](https://docs.astral.sh/uv/) for managing Python environments. You ha
 2.  **Use Make commands:**
     After installing uv, you can use the `make` commands such as `make install`, `make test`, `make build`, etc., to manage your environment.
 
----
+## </details>
 
 Repository initiated with [fpgmaas/cookiecutter-uv](https://github.com/fpgmaas/cookiecutter-uv).
