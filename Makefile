@@ -20,6 +20,12 @@ test: ## Test the code with pytest
 	@echo "🚀 Testing code: Running pytest"
 	@uv run python -m pytest --cov --cov-config=pyproject.toml --cov-report=xml
 
+.PHONY: fix-lint
+fix-lint: ## Fix all safe linting errors and format the code.
+	@echo "🚀 Fixing linting errors: Running ruff"
+	@uv run ruff check . --fix
+	@uv run ruff format .
+
 .PHONY: build
 build: clean-build ## Build wheel file
 	@echo "🚀 Creating wheel file"
