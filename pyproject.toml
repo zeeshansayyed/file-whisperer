@@ -17,6 +17,13 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
+dependencies = [
+    "typer>=0.16.0",
+]
+
+[project.scripts]
+file-whisperer = "file_whisperer.cli:app"
+whisperer = "file_whisperer.cli:app"
 
 [project.urls]
 Homepage = "https://zeeshansayyed.github.io/file-whisperer/"
