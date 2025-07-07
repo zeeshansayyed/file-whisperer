@@ -1,9 +1,12 @@
 """Main entrypoint for the file-whisperer CLI."""
 
+from pathlib import Path
 from typing import Annotated
 
 import typer
 from rich.console import Console
+
+from file_whisperer.scanner import scan_directory
 
 app = typer.Typer(
     name="file-whisperer",
@@ -39,6 +42,10 @@ def scan(
 ) -> None:
     """Scans a directory and collects metadata about the files within."""
     console.print(f"Scanning directory: {path}")
+    scanned_files = scan_directory(Path(path))
+    console.print(f"Found {len(scanned_files)} files:")
+    for file in scanned_files:
+        console.print(f"- {file}")
 
 
 @app.command()
