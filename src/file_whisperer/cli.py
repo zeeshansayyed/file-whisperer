@@ -6,6 +6,7 @@ from typing import Annotated
 import typer
 from rich.console import Console
 
+from file_whisperer.paths import get_config_dir, get_data_dir
 from file_whisperer.scanner import scan_directory
 
 app = typer.Typer(
@@ -76,6 +77,8 @@ def learn() -> None:
 def config() -> None:
     """Manages settings and preferences."""
     console.print("Managing settings and preferences...")
+    console.print(f"Config directory: {get_config_dir()}")
+    console.print(f"Data directory: {get_data_dir()}")
 
 
 if __name__ == "__main__":

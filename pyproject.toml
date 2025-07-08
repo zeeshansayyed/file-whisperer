@@ -20,6 +20,7 @@ classifiers = [
 dependencies = [
     "rich>=14.0.0",
     "typer>=0.16.0",
+    "platformdirs>=4.2.0",
 ]
 
 [project.scripts]
@@ -121,3 +122,6 @@ skip_empty = true
 [tool.coverage.run]
 branch = true
 source = ["src"]
+
+[tool.deptry]
+known_first_party = ["file_whisperer"]
