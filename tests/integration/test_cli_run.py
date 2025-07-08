@@ -7,7 +7,6 @@ def test_main_function_execution() -> None:
         ["python", "src/file_whisperer/cli.py"],
         capture_output=True,
         text=True,
-        cwd="/home/shahensha/Development/file-whisperer",
     )
     assert result.returncode == 0
     assert "Usage: cli.py [OPTIONS] COMMAND [ARGS]..." in result.stdout
