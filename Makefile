@@ -16,9 +16,15 @@ check: ## Run code quality tools.
 	@uv run deptry .
 
 .PHONY: test
-test: ## Test the code with pytest
-	@echo "🚀 Testing code: Running pytest"
-	@uv run python -m pytest --cov --cov-config=pyproject.toml --cov-report=xml
+test: ## Test the code with pytest and print coverage
+	@echo "🚀 Testing code: Running pytest and printing coverage"
+	@uv run python -m pytest --cov --cov-config=pyproject.toml --cov-report=xml --cov-report=term-missing
+
+.PHONY: fix-lint
+fix-lint: ## Fix all safe linting errors and format the code.
+	@echo "🚀 Fixing linting errors: Running ruff"
+	@uv run ruff check . --fix
+	@uv run ruff format .
 
 .PHONY: build
 build: clean-build ## Build wheel file

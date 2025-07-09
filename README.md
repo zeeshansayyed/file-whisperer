@@ -85,32 +85,48 @@ For each file, our AI can:
 | `learn`    | Update AI understanding based on interaction history |
 | `config`   | Manage settings and preferences                      |
 
-## **🛠️ Installation**
+## 🛠️ Installation
+
+To get started with File-Whisperer, you can install it directly from the source code.
+
+### Prerequisites
+
+- Python 3.9+
+- [uv](https://docs.astral.sh/uv/) (a fast Python package installer and resolver)
+
+### 1. Clone the Repository
 
 ```bash
-# Install from PyPI (coming soon!)
-pip install file-whisperer
-
-# Or install from source
 git clone https://github.com/zeeshansayyed/file-whisperer.git
 cd file-whisperer
-uv sync
 ```
 
-## **🚀 Quick Start**
+### 2. Install Dependencies
+
+Create a virtual environment and install the required packages using `uv`:
 
 ```bash
-# Point File-Whisperer at your messy folder
-file-whisperer scan ~/Downloads
+make install
+```
 
-# Get AI recommendations
-file-whisperer organize
+This will set up everything you need to run the application.
 
-# Review and approve suggestions
-file-whisperer review
+## 🚀 Quick Start
 
-# Apply approved changes
-file-whisperer apply
+Once installed, you can run File-Whisperer from within the project directory using `uv run`.
+
+### Show Help
+
+To see the available commands, run:
+
+```bash
+uv run file-whisperer --help
+```
+
+Or use the shorter `whisperer` alias:
+
+```bash
+uv run whisperer --help
 ```
 
 ## **🏗️ Architecture**
