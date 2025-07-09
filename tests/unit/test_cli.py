@@ -12,7 +12,7 @@ runner = CliRunner(mix_stderr=False)
 
 def strip_ansi(text: str) -> str:
     """Strips ANSI escape codes from a string."""
-    ansi_escape = re.compile(r"\x1b[[0-9;]*m")
+    ansi_escape = re.compile(r"\x1b\[[0-9;]*m")
     return ansi_escape.sub("", text)
 
 

@@ -53,6 +53,9 @@ def scan(
 def organize() -> None:
     """Generates AI-powered organization recommendations."""
     console.print("Generating organization recommendations...")
+    # For now, we'll just generate recommendations for a dummy list of files
+    # In a real scenario, this would come from the scanner output
+    console.print("Generating organization recommendations...")
 
 
 @app.command()
